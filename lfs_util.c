@@ -6,9 +6,13 @@
  */
 #include "lfs_util.h"
 
-// Only compile if user does not provide custom config
+// Only compile if user does not provide custom config and has not
+// explicitly requested the implementation
 #ifndef LFS_CONFIG
+#define LFS_SOFTWARE_CRC_WITH_SMALL_LOOKUP
+#endif
 
+#ifdef LFS_SOFTWARE_CRC_WITH_SMALL_LOOKUP
 
 // Software CRC implementation with small lookup table
 uint32_t lfs_crc(uint32_t crc, const void *buffer, size_t size) {
